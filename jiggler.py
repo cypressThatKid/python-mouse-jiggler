@@ -1,11 +1,21 @@
 from time import sleep
-import pyautogui, sys
+import pyautogui
 
-print("[SUCCESS] Starting the jiggling!")
+print("Coffee time...")
 
-while True:
-    xpos = pyautogui.position()[0]
-    ypos = pyautogui.position()[1]
-    pyautogui.moveTo(xpos,ypos)   
-    pyautogui.moveTo(xpos + 1,ypos) 
-    sleep(2)
+forward = True
+
+try:
+    while True:
+        xpos = pyautogui.position()[0]
+        ypos = pyautogui.position()[1]
+        pyautogui.moveTo(xpos,ypos)
+        new_pos = xpos - 1
+        if forward:
+            new_pos = xpos + 1
+        forward = not forward
+        pyautogui.moveTo(new_pos, ypos)
+        sleep(30)
+
+except KeyboardInterrupt:
+    print("offee over. Get back to work, buddy.")
